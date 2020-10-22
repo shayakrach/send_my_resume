@@ -6,7 +6,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 from getpass import getpass
 
-NUM_OF_TRIES = 3
+NUM_OF_TRIES = 2
 
 
 def send_mail(my_email, my_pass, addressee_email, text):
@@ -26,8 +26,9 @@ def send_mail(my_email, my_pass, addressee_email, text):
             return
         except:
             print('Password Incorrect')
-            print(my_pass)
+            # print(my_pass)
             my_pass = getpass('Password: ')
+    print('Remember the password and then come back')
 
 
 # my_email  == my email address
