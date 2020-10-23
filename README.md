@@ -5,4 +5,4 @@ automatically when I apply for a job.
 
 ### To use
 
-Setting your details in setting.py 
+Set your details in setting.py 
