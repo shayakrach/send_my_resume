@@ -104,23 +104,13 @@ def send_resume(addressee_email, addressee_name):
         else:
             message_label['text'] = 'Something went wrong, check in setting.py'
 
-'''
-    except FileNotFoundError:
-        message_label['text'] = 'Invalid file'
-
-    except smtplib.SMTPAuthenticationError:
-        message_label['text'] = 'Your email or password are Invalid'
-
-    except smtplib.SMTPRecipientsRefused:
-        message_label['text'] = 'Invalid addressee email'
-'''
 
 # Set main color
 color = DEFAULT_COLOR
 if my_color in COLORS.keys():
     color = COLORS[my_color]
 
-root = Tk()
+root = Tk(className=' {}'.format(my_name))
 
 # Set default size
 canvas = Canvas(root, height=HEIGHT, width=WIDTH)
