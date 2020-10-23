@@ -21,7 +21,8 @@ COLORS = {
     'red': '#DA5552'
 }
 
-DEFUALT_COLOR = '#FAEBA7'
+# Set default color
+DEFAULT_COLOR = '#FAEBA7'
 
 
 def send_resume(addressee_email, addressee_name):
@@ -86,6 +87,24 @@ def send_resume(addressee_email, addressee_name):
         name_entry.delete(0, len(addressee_name))
         message_label['text'] = 'Your resume sent to {}'.format(addressee_name)
 
+    except Exception as e:
+        print(type(e).__name__)
+        if type(e).__name__ == 'FileNotFoundError':
+            message_label['text'] = 'Invalid file'
+
+        elif type(e).__name__ == 'OSError':
+            message_label['text'] = 'Invalid file path'
+
+        elif type(e).__name__ == 'SMTPAuthenticationError':
+            message_label['text'] = 'Your email or password are Invalid'
+
+        elif type(e).__name__ == 'SMTPRecipientsRefused':
+            message_label['text'] = 'Invalid addressee email'
+
+        else:
+            message_label['text'] = 'Something went wrong, check in setting.py'
+
+'''
     except FileNotFoundError:
         message_label['text'] = 'Invalid file'
 
@@ -94,10 +113,10 @@ def send_resume(addressee_email, addressee_name):
 
     except smtplib.SMTPRecipientsRefused:
         message_label['text'] = 'Invalid addressee email'
-
+'''
 
 # Set main color
-color = DEFUALT_COLOR
+color = DEFAULT_COLOR
 if my_color in COLORS.keys():
     color = COLORS[my_color]
 
