@@ -4,6 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 from tkinter import *
+import re
 
 # Import the variables from setting
 from setting import my_email, my_pass, my_name, file_path, filename, my_color
@@ -26,10 +27,11 @@ DEFAULT_COLOR = '#FAEBA7'
 
 
 def send_resume(addressee_email, addressee_name):
-    # if addressee email or name is empty
-    if len(addressee_email) == 0:
-        message_label['text'] = 'Enter addressee email'
+    # basic check for email
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", addressee_email):
+        message_label['text'] = 'Invalid email'
         return
+    # if addressee name is empty
     if len(addressee_name) == 0:
         message_label['text'] = 'Enter addressee name'
         return
